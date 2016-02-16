@@ -1,41 +1,39 @@
-Template.notificationTeaser.helpers({
-    'notifsCount': function() {
-        if (Meteor.user()) {
-            var NotifCount = NotificationHistory.find({
-                'expiration': {
-                    $gt: new Date()
-                },
-                'dismissals': {
-                    $nin: [Meteor.user()._id]
-                }
-            }, {
-                'limit': 10,
-                sort: {
-                    'addedAt': -1
-                }
-            }).count()
-            if (NotifCount) {
-                return NotifCount
-            } else {
-                Session.set('showNotifications', false)
-            }
-        } else {
-            return NotificationHistory.find({
-                'expiration': {
-                    $gt: new Date()
-                },
-                'dismissals': {
-                    $nin: ['hey']
-                }
-            }, {
-                'limit': 10,
-                sort: {
-                    'addedAt': -1
-                }
-            }).count()
-        }
-    },
-})
+Template.registerHelper("notifsCount", function(){
+  if (Meteor.user()) {
+      var NotifCount = NotificationHistory.find({
+          'expiration': {
+              $gt: new Date()
+          },
+          'dismissals': {
+              $nin: [Meteor.user()._id]
+          }
+      }, {
+          'limit': 10,
+          sort: {
+              'addedAt': -1
+          }
+      }).count()
+      if (NotifCount) {
+          return NotifCount
+      } else {
+          Session.set('showNotifications', false)
+      }
+  } else {
+      return NotificationHistory.find({
+          'expiration': {
+              $gt: new Date()
+          },
+          'dismissals': {
+              $nin: ['hey']
+          }
+      }, {
+          'limit': 10,
+          sort: {
+              'addedAt': -1
+          }
+      }).count()
+  }
+});
 
 Template.notificationTeaser.onCreated(function(){
     Session.set('showNotifications', false)
