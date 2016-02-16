@@ -1,10 +1,10 @@
 Package.describe({
   name: 'app-notifications',
-  version: '0.0.1',
+  version: '0.0.2',
   // Brief, one-line summary of the package.
   summary: '',
   // URL to the Git repository containing the source code for this package.
-  git: 'https://github.com/harryward/meteor-app-notifications',
+  git: 'https://github.com/inkadnb/meteor-app-notifications',
   // By default, Meteor will default to using README.md for documentation.
   // To avoid submitting documentation, set this field to null.
   documentation: 'README.md'
@@ -13,9 +13,9 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.2.0.1');
   api.use('ecmascript');
-  api.use("useraccounts:core");
-  api.use("accounts-password");
-  api.use("useraccounts:bootstrap");
+  //api.use("useraccounts:core");
+  //api.use("accounts-password");
+  //api.use("useraccounts:bootstrap");
   api.use("kadira:flow-router");
   api.use('reactive-var');
   api.use('blaze-html-templates');
@@ -28,4 +28,3 @@ Package.onUse(function(api) {
   api.addFiles('app-notifications.css','client');
   api.export('NotificationHistory')
 });
-

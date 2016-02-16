@@ -1,6 +1,19 @@
-Meteor.publish('notifications', function() {
+Meteor.publish('subscriber-notifications', function() {
     console.log('publishing notifications...') // for testing
-    return NotificationHistory.find();
+    //  Subscriber id
+    if(this.userId)
+    {
+      log("publishing notifications for specific user");
+      var user = Meteor.users.findOne(this.userId);
+      var username = user.username;
+      var subscriberId = username.substring(username.lastIndexOf("_")+1);
+
+      log("subscriber id for notifications " + subscriberId);
+
+      return NotificationHistory.find({"subscriberId": subscriberId});
+    } else {
+      return null;
+    }
 });
 
 Meteor.methods({

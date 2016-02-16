@@ -9,9 +9,9 @@ Template.notificationTeaser.helpers({
                     $nin: [Meteor.user()._id]
                 }
             }, {
-                'limit': 5,
+                'limit': 10,
                 sort: {
-                    'addedAt': 1
+                    'addedAt': -1
                 }
             }).count()
             if (NotifCount) {
@@ -28,9 +28,9 @@ Template.notificationTeaser.helpers({
                     $nin: ['hey']
                 }
             }, {
-                'limit': 5,
+                'limit': 10,
                 sort: {
-                    'addedAt': 1
+                    'addedAt': -1
                 }
             }).count()
         }
@@ -39,7 +39,7 @@ Template.notificationTeaser.helpers({
 
 Template.notificationTeaser.onCreated(function(){
     Session.set('showNotifications', false)
-    Meteor.subscribe('notifications')
+    Meteor.subscribe('subscriber-notifications')
 })
 
 
@@ -55,9 +55,9 @@ Template.notificationTeaser.events({
                     $nin: [Meteor.user()._id]
                 }
             }, {
-                'limit': 5,
+                'limit': 10,
                 sort: {
-                    'addedAt': 1
+                    'addedAt': -1
                 }
             }).fetch())
         }
@@ -76,21 +76,29 @@ Template.notificationLayout.helpers({
             return NotificationHistory.find({
                 'expiration': {
                     $gt: new Date()
-                },
-                'dismissals': {
-                    $nin: [Meteor.user()._id]
                 }
             }, {
-                'limit': 5,
+                'limit':10,
                 sort: {
-                    'addedAt': 1
+                    'addedAt': -1
                 }
             }).fetch()
         } else {
             return false
         }
     },
+    'isRead': function(notif) {
+      var readCount = NotificationHistory.find({
+          '_id': notif._id,
+          'dismissals': Meteor.user()._id
+      }).count();
 
+      if(readCount > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     'showStatus': function() {
         return Session.get('showNotifications')
     }
@@ -106,14 +114,13 @@ Template.notificationLayout.events({
         Meteor.call('markRead', this, function(err, resp) {
             console.log('mark as read response', resp)
         })
-    },
+    },/*
     'click .notificationRow': function() {
         console.log(this) //DEBUG
-    },
+    },*/
     'click .clickGo': function(event, template) {
         Meteor.call('registerClick', this);
         Session.set('showNotifications',false)
         FlowRouter.go(this.link)
     }
 })
-

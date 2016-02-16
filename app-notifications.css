@@ -77,3 +77,6 @@ a.notificationCount {
     margin-bottom: 1px;
     margin-top: -3px;
 }
+.bold {
+  font-weight: bold;
+}
