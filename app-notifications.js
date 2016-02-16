@@ -12,7 +12,8 @@ Template.registerHelper("notifsCount", function(){
           sort: {
               'addedAt': -1
           }
-      }).count()
+      }).count();
+      console.log("notifsCount: " + NotifCount);
       if (NotifCount) {
           return NotifCount;
       } else {

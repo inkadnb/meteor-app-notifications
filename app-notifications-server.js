@@ -7,7 +7,7 @@ Meteor.publish('subscriber-notifications', function() {
       var user = Meteor.users.findOne(this.userId);
       var username = user.username;
       var subscriberId;
-      if(username) subscriberId = username.substring(username.lastIndexOf("_")+1);
+      if(username != undefined) subscriberId = username.substring(username.lastIndexOf("_")+1);
       else subscriberId = user._id;
 
       log("subscriber id for notifications " + subscriberId);

@@ -1,6 +1,6 @@
 Package.describe({
   name: 'jbastnagelmt:app-notifications',
-  version: '0.0.5',
+  version: '0.0.12',
   // Brief, one-line summary of the package.
   summary: 'Meteor In-App Notifications',
   // URL to the Git repository containing the source code for this package.

@@ -5,7 +5,8 @@
 </template>
 <template name="notificationLayout">
             {{#if showStatus}}
-                <div class="allnotifications slideDown" style="transition:ease-in .3s">
+                <div style='float:left;position:absolute;padding:2%;'>{{> inAppNotify}}</div>
+                <div class="allnotifications" style="position:inherit;margin:0;padding:2%;">
                     <div class="text-subhead text-center lead">
                         Notifications<a class="pull-right fadeIn hider "><i class="fa fa-remove"></i></a>
                     </div>
@@ -79,5 +80,8 @@
                         </div>
                     {{/if}}
                 </div>
+                {{else}}
+                  {{> inAppNotify}}
+                  You have no notifications.
             {{/if}}
 </template>
