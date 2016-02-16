@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'app-notifications',
+  name: 'jbastnagelmt:app-notifications',
   version: '0.0.2',
   // Brief, one-line summary of the package.
   summary: '',
