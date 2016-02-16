@@ -16,7 +16,7 @@ Package.onUse(function(api) {
   //api.use("useraccounts:core");
   //api.use("accounts-password");
   //api.use("useraccounts:bootstrap");
-  api.use("kadira:flow-router");
+  //api.use("kadira:flow-router");
   api.use('reactive-var');
   api.use('blaze-html-templates');
   api.use('mongo');

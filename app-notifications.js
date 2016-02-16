@@ -121,6 +121,6 @@ Template.notificationLayout.events({
     'click .clickGo': function(event, template) {
         Meteor.call('registerClick', this);
         Session.set('showNotifications',false)
-        FlowRouter.go(this.link)
+        //FlowRouter.go(this.link)
     }
 })
