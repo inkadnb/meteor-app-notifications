@@ -19,20 +19,6 @@ Template.registerHelper("notifsCount", function(){
           Session.set('showNotifications', false);
           return NotifCount;
       }
-  } else {
-      return NotificationHistory.find({
-          'expiration': {
-              $gt: new Date()
-          },
-          'dismissals': {
-              $nin: ['hey']
-          }
-      }, {
-          'limit': 10,
-          sort: {
-              'addedAt': -1
-          }
-      }).count()
   }
 });
 
