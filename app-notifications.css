@@ -80,3 +80,7 @@ a.notificationCount {
 .bold {
   font-weight: bold;
 }
+img{
+  max-width: 297px;
+  height: auto;
+}
