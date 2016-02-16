@@ -14,9 +14,10 @@ Template.registerHelper("notifsCount", function(){
           }
       }).count()
       if (NotifCount) {
-          return NotifCount
+          return NotifCount;
       } else {
-          Session.set('showNotifications', false)
+          Session.set('showNotifications', false);
+          return NotifCount;
       }
   } else {
       return NotificationHistory.find({
