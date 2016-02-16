@@ -1,4 +1,4 @@
-Template.registerHelper("notifsCount", function(){
+unreadNotifyCountApp = function() {
   if (Meteor.user()) {
       var NotifCount = NotificationHistory.find({
           'expiration': {
@@ -13,7 +13,6 @@ Template.registerHelper("notifsCount", function(){
               'addedAt': -1
           }
       }).count();
-      console.log("notifsCount: " + NotifCount);
       if (NotifCount) {
           return NotifCount;
       } else {
@@ -21,6 +20,10 @@ Template.registerHelper("notifsCount", function(){
           return NotifCount;
       }
   }
+};
+
+Template.registerHelper("notifsCount", function(){
+  return unreadNotifyCountApp();
 });
 
 Template.notificationTeaser.onCreated(function(){
@@ -86,7 +89,7 @@ Template.notificationLayout.helpers({
       }
     },
     'showStatus': function() {
-        return Session.get('showNotifications')
+        return true;//Session.get('showNotifications')
     }
 })
 
